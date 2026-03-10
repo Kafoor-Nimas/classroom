@@ -21,6 +21,21 @@ const SubjectsList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("all");
 
+  const departmentFilters =
+    selectedDepartment === "all"
+      ? []
+      : [
+          {
+            field: "department",
+            operator: "eq" as const,
+            value: selectedDepartment,
+          },
+        ];
+
+  const searchFilters = searchQuery
+    ? [{ field: "name", operator: "contains" as const, value: searchQuery }]
+    : [];
+
   const subjectTable = useTable<Subject>({
     columns: useMemo<ColumnDef<Subject>[]>(
       () => [
@@ -65,7 +80,9 @@ const SubjectsList = () => {
     refineCoreProps: {
       resource: "subjects",
       pagination: { pageSize: 10, mode: "server" },
-      filters: {},
+      filters: {
+        permanent: [...departmentFilters, ...searchFilters],
+      },
       sorters: {},
     },
   });
