@@ -2,6 +2,7 @@ import { CreateButton } from "@/components/refine-ui/buttons/create";
 import { DataTable } from "@/components/refine-ui/data-table/data-table";
 import { Breadcrumb } from "@/components/refine-ui/layout/breadcrumb";
 import { ListView } from "@/components/refine-ui/views/list-view";
+import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,7 +15,7 @@ import { DEPARTMENT_OPTIONS } from "@/constants";
 import { Subject } from "@/types";
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef } from "@tanstack/react-table";
-import { Badge, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 
 const SubjectsList = () => {
@@ -41,7 +42,7 @@ const SubjectsList = () => {
       () => [
         {
           id: "code",
-          accessorKey: "code",
+          accessorKey: "courseCode",
           size: 100,
           header: () => <p className="column-title ml-2">Code</p>,
           cell: ({ getValue }) => <Badge>{getValue<string>()}</Badge>,
