@@ -41,6 +41,24 @@ const SubjectsList = () => {
           ),
           filterFn: "includesString",
         },
+        {
+          id: "department",
+          accessorKey: "department",
+          size: 150,
+          header: () => <p className="column-title">Department</p>,
+          cell: ({ getValue }) => (
+            <Badge variant="secondary">{getValue<string>()}</Badge>
+          ),
+        },
+        {
+          id: "description",
+          accessorKey: "description",
+          size: 300,
+          header: () => <p className="column-title">Description</p>,
+          cell: ({ getValue }) => (
+            <span className="truncate line-clamp-2"> {getValue<string>()}</span>
+          ),
+        },
       ],
       [],
     ),
